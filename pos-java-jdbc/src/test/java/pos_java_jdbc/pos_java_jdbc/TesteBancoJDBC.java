@@ -24,34 +24,56 @@ public class TesteBancoJDBC {
 		userPosDAO.salvar(userposJava);
 	}
 
+//metodo para listar o banco de dados 
 	@Test
 	public void initListar() {
 		UserPosDAO dao = new UserPosDAO();
 		try {
 			List<UserposJava> list = dao.listar();
-			
+
 			for (UserposJava userposJava : list) {
 				System.out.println(userposJava);
 				System.out.println("-------------------------");
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
+
+//metodo para buscar no banco de dados 
 	@Test
 	public void initBuscar() {
-		
+
 		UserPosDAO dao = new UserPosDAO();
-		
-			try {
-				UserposJava userposJava = dao.Buscar(5L);
-				System.out.println(userposJava);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	
+
+		try {
+			UserposJava userposJava = dao.Buscar(6L);
+			System.out.println(userposJava);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+
+//Metodo para atualizar a base de dados do banco
+	@Test
+	public void initAtualizar() {
+
+		try {
+
+			UserPosDAO dao = new UserPosDAO();
+
+			UserposJava objetoBanco = dao.Buscar(5L);
+			
+			objetoBanco.setNome("Nome Mudado com metodo atualizar");
+			
+			dao.atualizar(objetoBanco);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
