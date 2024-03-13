@@ -119,4 +119,12 @@ public class TesteBancoJDBC {
 		}
 		
 	}
+
+	public void testeDeleteUserFone () {
+		 
+		 UserPosDAO dao = new UserPosDAO();
+		 dao.deleteFonesPorUser(8l);
+		 
+		 
+	 } 
 }
