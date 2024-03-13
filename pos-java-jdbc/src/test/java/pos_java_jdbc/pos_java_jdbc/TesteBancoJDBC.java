@@ -1,6 +1,7 @@
 package pos_java_jdbc.pos_java_jdbc;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -8,6 +9,8 @@ import org.junit.Test;
 import conexaojdbc.SingleConnection;
 import dao.UserPosDAO;
 import junit.framework.TestCase;
+import model.BeanUserFone;
+import model.Telefone;
 import model.UserposJava;
 
 public class TesteBancoJDBC {
@@ -86,5 +89,34 @@ public class TesteBancoJDBC {
 		}catch (Exception e) {
 		e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testeInsertTelefone() {
+		
+		Telefone telefone = new Telefone();
+		telefone.setNumero("(11) 97301-7489");
+		telefone.setTipo("celular");
+		telefone.setUsuario(11l);
+		
+		UserPosDAO dao = new UserPosDAO();
+		dao.salvarTelefone(telefone);
+		
+	}
+	
+	
+	@Test
+	public void testeCarregaFonesUser() {
+		
+		UserPosDAO dao = new UserPosDAO();
+		
+		List<BeanUserFone> beanUserFones = dao.listaUserFone(9l);
+		
+		for (BeanUserFone beanUserFone : beanUserFones) {
+			System.out.println(beanUserFone);
+			System.out.println("----------------------------");
+			
+		}
+		
 	}
 }
